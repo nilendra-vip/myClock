@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: gilroy;
+            src: url(./Gilroy-Regular.ttf);
+        }
+
+        @font-face {
+            font-family: yank;
+            src: url(./yank-webfont.ttf);
+        }
+
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #main {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            font-family: gilroy;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5vw;
+        }
+
+        h3 {
+            font-size: 3vw;
+            font-weight: 100;
+        }
+
+        small {
+            position: absolute;
+            top: 97%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2vw;
+        }
+
+        small span {
+            font-family: yank;
+            color: red;
+        }
+
+        @media (max-width:600px) {
+            h1 {
+                font-size: 12vw;
+                text-align: center;
+            }
+
+            h3 {
+                font-size: 10vw;
+                font-weight: 100;
+            }
+
+            small {
+                font-size: 4vw;
+                text-align: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <h1>Current Running Time</h1>
+        <h3 id="time">0:00</h3>
+
+        <small>Made by : <span>Nilendra Patel</span></small>
+    </div>
+
+
+    <script>
+        setInterval(function () {
+            currentTime();
+        }, 1000); // every second update displayTime()
+
+
+        // For CurrentTime 
+        function currentTime() {
+            const date = new Date();
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+            const amPm = hours >= 12 ? 'PM' : 'AM';
+
+            hours %= 12;
+            hours = hours ? hours : 12;
+
+            document.querySelector('#time').innerHTML = `${hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds} ${amPm}`;
+        }
+
+    </script>
+</body>
+
+</html>
